@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="nav-text">
+            <h1>Time Tracker</h1>
+            <p>Track your study sessions and stay focused</p>
+        </div>
+        <div class="bottom-nav linear-gradient">
+            <div class="nav-list">
+                <ul>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                        <a href="dashboard.html">Dashboard</a></li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg> 
+                        <a href="tasks.html">Tasks</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                        <a href="calendar.html">Calendar</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        <a href="goals.html">Goals</a>
+                    </li>
+
+                    <li class="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        <a href="tracker.html">Time Tracker</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+                        <a href="analytics.html">Analytics</a>
+                    </li>
+
+                    <li>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="study-streak active">
+                <p>Study Streak</p>
+                <p class="streak bold">7 Days 🔥</p>
+            </div>
+        </div>
+        <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+    </header>
+    <main>
+        <div class="tracker-container">
+            <section class="timer-section">
+                <div class="pomodoro-timer">
+                    <div id="timer-msg">
+                        <span id="session-indicator"></span>
+                        <p class="bold">Ready to Study</p>
+                    </div>
+                    <div class="timer-container">
+                        <div class="timer">
+                            <div class="main-pomodoro">
+                                <div class="pomodoro">
+                                    <div class="time-display" id="pomodoro-timer" data-duration="25:00">
+                                        <h1 class="time">25:00</h1>
+                                    </div>
+                                    <div class="time-display" id="short-timer" data-duration="5:00">
+                                        <h1 class="time">5:00</h1>
+                                    </div>
+                                    <div class="time-display" id="long-timer" data-duration="15:00">
+                                        <h1 class="time">15:00</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="buttons">
+                                <button class="timer-btn" id="start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+                                </button>
+                                <button class="timer-btn" id="restart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw-icon lucide-rotate-ccw"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                                </button>
+                                <button class="timer-btn" id="stop">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-icon lucide-square"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>
+                                </button>
+                            </div>
+                            <div class="btn-container">
+                                <button class="button" id="pomodoro-session">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-icon lucide-brain"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
+                                    <p class="bold">Focus</p>
+                                    <p class="secondary-text">25 min</p>
+                                </button>
+                                <button class="button" id="short-break">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+                                    <p class="bold">Short Break</p>
+                                    <p class="secondary-text">5 min</p>
+                                </button>
+                                <button class="button" id="long-break">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+                                    <p class="bold">Long Break</p>
+                                    <p class="secondary-text">15 min</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="horizontal-line"></div>
+                    <div class="subject-selection">
+                        <p class="bold">What are you studying?</p>
+                        <select name="subject-selection" id="subject-selection" class="options">
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="English">English</option>
+                            <option value="Science">Science</option>
+                            <option value="Computer Science">Computer Science</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="todays-session">
+                    <h3>Today's Study Sessions</h3>
+                    <div class="study-session">
+                        <div class="text">
+                            <div class="span-icon opaque-green">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                            </div>
+                            <div class="p-text">
+                                <p class="bold">Mathematics</p>
+                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
+                            </div>
+                        </div>
+                        <div class="focus">
+                            <p class="bold">45 min</p>
+                            <div class="small-flex small-text secondary-text">
+                                <div class="circle"></div> 85% focus</div>
+                        </div>
+                    </div>
+                    <div class="study-session">
+                        <div class="text">
+                            <div class="span-icon opaque-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                            </div>
+                            <div class="p-text">
+                                <p class="bold">Mathematics</p>
+                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
+                            </div>
+                        </div>
+                        <div class="focus">
+                            <p class="bold">45 min</p>
+                            <div class="small-flex small-text secondary-text">
+                                <div class="circle"></div> 85% focus</div>
+                        </div>
+                    </div>
+                    <div class="study-session">
+                        
+                        <div class="text">
+                            <div class="span-icon opaque-purple">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                            </div>
+                            <div class="p-text">
+                                <p class="bold">Mathematics</p>
+                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
+                            </div>
+                        </div>
+                        <div class="focus">
+                            <p class="bold">45 min</p>
+                            <div class="small-flex small-text secondary-text">
+                                <div class="circle"></div> 85% focus</div>
+                        </div>
+                    </div>
+                    <div class="study-session">
+                        
+                        <div class="text">
+                            <div class="span-icon opaque-pink">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                            </div>
+                            <div class="p-text">
+                                <p class="bold">Mathematics</p>
+                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
+                            </div>
+                        </div>
+                        <div class="focus">
+                            <p class="bold">45 min</p>
+                            <div class="small-flex small-text secondary-text">
+                                <div class="circle"></div> 85% focus</div>
+                        </div>
+                    </div>
+                    <div class="total-study-time" id="total-study-time">
+                        <p class="bold">Total Study Time Today</p>
+                        <p class="study-time bold">2h 20min</p>
+                    </div>
+                </div>
+            </section>
+            <section class="stats-section">
+                <div class="stats">
+                    <h3>Today's Stats</h3>
+                    <span><p class="secondary-text">Sessions</p> <p class="bold">4</p></span>
+                    <span><p class="secondary-text">Total Time</p> <p class="bold">2h 40min</p></span>
+                    <span><p class="secondary-text">Avg Focus</p> <p class="bold">90%</p></span>
+                    <span><p class="secondary-text">Breaks Taken</p> <p class="bold">3</p></span>
+                </div>
+                <div class="goal-tracker linear-gradient">
+                    <h3>Weekly Goal</h3>
+                    <span>18.5/21 hours <p>74%</p></span>
+                    <div class="bar">
+                        <div class="bar-status"></div>
+                    </div>
+                    <p>Keep it up you need 6.5 more hours to reach your weekly goal.</p>
+                </div>
+                <div class="pomodoro-setter">
+                    <h3><i class="fa-regular fa-clock"></i> Pomodoro</h3>
+                    <div class="input-div">
+                        <label for="focus-duration" class="secondary-text">Focus Duration</label>
+                        <input type="number" name="focus-duration" id="focus-duration" value="25">
+                    </div>
+                    <div class="input-div">
+                        <label for="break-duration" class="secondary-text">Break Duration</label>
+                        <input type="number" name="break-duration" id="break-duration" value="5">
+                    </div>
+                    <div class="checkbox-div">                        
+                        <label for="auto-breaks" class="secondary-text">Auto-start breaks</label>
+                        <input type="checkbox" name="auto-breaks" id="auto-breaks">
+                    </div>
+                </div>
+                <div class="tip-div">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-alert-icon lucide-badge-alert"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                    </span>
+                    <div>
+                        <h3>Pro-Tip</h3>
+                        <p>Take a 15-20 minute break after every 4 focus sessions to maintain peak performance.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="JS/timer.js"></script>
+</body>
+</html>

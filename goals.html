@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <title>StudyFlow Calender</title>
+</head>
+<body>
+    <header class="white-background light-blue">
+        <div class="top-nav">
+            <div class="nav-text">
+                <h1>Goals & Milestones</h1>
+                <p>Set targets, track progress and achieve your academic dreams</p>
+            </div>
+            <div class="btns-flex">
+                <button class="primary-color" id="add-goal-btn"><i class="fa-solid fa-plus"></i> New Goal</button>
+                <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+            </div>
+        </div>
+        <div class="bottom-nav linear-gradient">
+            <div class="nav-list">
+                <ul>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                        <a href="dashboard.html">Dashboard</a></li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg> 
+                        <a href="tasks.html">Tasks</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-icon lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                        <a href="calendar.html">Calendar</a>
+                    </li>
+
+                    <li class="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        <a href="goals.html">Goals</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        <a href="tracker.html">Time Tracker</a>
+                    </li>
+
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+                        <a href="analytics.html">Analytics</a>
+                    </li>
+
+                    <li>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="study-streak active">
+                <p>Study Streak</p>
+                <p class="streak bold">7 Days 🔥</p>
+            </div>
+        </div>
+       
+    </header>
+    <div id="eventModal" class="modal">     
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Add Goal</h1>
+                <span><i class="fa-solid fa-circle-xmark"></i></span>
+            </div>
+            <form id="addTaskForm" class="form">
+                <label for="title">Goal Title* :</label>
+                <input type="text" id="title" placeholder="Enter task title" required>
+
+                <label for="description">Description (optional) :</label>
+                <textarea name="description" id="description" rows="3"></textarea>
+
+                <label for="category">Category* :</label>
+                <select name="category" id="category">
+                    <option value="Academic">Academic</option>
+                    <option value="Habits">Habits</option>
+                    <option value="Skills">Skills</option>
+                    <option value="short-term">Short Term</option>
+                    <option value="long-term">Long Term</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="priority">Priority* :</label>
+                <select name="priority" id="priority">
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                
+                <label for="deadline">Deadline* :</label>
+                <input type="date" name="deadline" id="deadline" required>
+                
+                <button type="submit" class="btn">Add Goal</button>
+            </form>
+        </div>
+    </div>
+    <main class="white-background">
+        <div class="view-btn-group">
+            <button class="primary-btn view-btn btn-active">All Goals</button>
+            <button class="primary-btn view-btn">Academic</button>
+            <button class="primary-btn view-btn">Skills</button>
+            <button class="primary-btn view-btn">Habits</button>
+            <button class="primary-btn view-btn">Short-term</button>
+            <button class="primary-btn view-btn">Long-term</button>
+        </div>
+        <div class="four-column-layout">
+            <div class="overview-card card ">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </span>
+                <div class="column-text">
+                    <p>Active Goals</p>
+                    <h3>15</h3>
+                </div>
+            </div>
+
+            <div class="overview-card card">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                </span>
+                <div class="column-text">
+                    <p>Completed</p>
+                    <h3>45</h3>
+                </div>
+            </div>
+            <div class="overview-card card">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+                </span>
+                <div class="column-text">
+                    <p>On Track</p>
+                    <h3>8</h3>
+                </div>
+            </div>
+
+            <div class="overview-card card">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-alert-icon lucide-badge-alert"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                </span>
+                <div class="column-text">
+                    <p>Need Attention</p>
+                    <h3>2</h3>
+                </div>
+            </div>
+        </div>
+        <div class="goals-container">
+            <div class="center">
+                <section id="short-term" class="goal-term-container">
+                    <div class="heading">
+                        <i class="fa-regular fa-flag"></i>
+                        <h3>Short Term Goals</h3>
+                        <span class="goals-active">5 active</span>
+                    </div>
+                    <div class="goal secondary-text">
+                        <div class="goal-heading">
+                            <div class="main-text">
+                                <h4>Complete Math Course <span class="priority">High</span></h4>
+                                <p>Finish all chapters and practice problems</p>
+                            </div>
+                            <i class="fa-solid fa-pen edit-goal"></i>
+                        </div>
+                        <div class="goal-info">
+                            <div class="info-icons">
+                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
+                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
+                                <span>Academic</span>
+                            </div>
+                            <i class="fa-solid fa-trash delete-goal"></i>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-text">
+                                <p>Progress</p>
+                                <p class="percentage">85%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goal secondary-text">
+                        <div class="goal-heading">
+                            <div class="main-text">
+                                <h4>Complete Math Course <span class="priority">High</span></h4>
+                                <p>Finish all chapters and practice problems</p>
+                            </div>
+                            <i class="fa-solid fa-pen edit-goal"></i>
+                        </div>
+                        <div class="goal-info">
+                            <div class="info-icons">
+                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
+                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
+                                <span>Academic</span>
+                            </div>
+                            <i class="fa-solid fa-trash delete-goal"></i>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-text">
+                                <p>Progress</p>
+                                <p class="percentage">85%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goal secondary-text">
+                        <div class="goal-heading">
+                            <div class="main-text">
+                                <h4>Complete Math Course <span class="priority">High</span></h4>
+                                <p>Finish all chapters and practice problems</p>
+                            </div>
+                            <i class="fa-solid fa-pen edit-goal"></i>
+                        </div>
+                        <div class="goal-info">
+                            <div class="info-icons">
+                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
+                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
+                                <span>Academic</span>
+                            </div>
+                            <i class="fa-solid fa-trash delete-goal"></i>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-text">
+                                <p>Progress</p>
+                                <p class="percentage">85%</p>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="long-term" class="goal-term-container">
+                    <div class="heading">
+                        <i class="fa-regular fa-star"></i>
+                        <h3>Long Term Goals</h3>
+                        <span class="goals-active">3 active</span>
+                    </div>
+                    <div class="long-term-goal secondary-text">
+                        <div class="long-term-goal-header">
+                            <div>
+                                <h4>Graduate with Honours</h4>
+                                <p>Maintain GPA above 3.8</p>
+                            </div>
+                            <p class="percentage big-text">45%</p>
+                        </div>
+                        <div class="info-icons">
+                            <span><i class="fa-solid fa-calendar"></i> May 2027</span>
+                            <span><i class="fa-solid fa-bullseye"></i> 3/7 semesters</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-status"></div>
+                        </div>
+                    </div>
+                    <div class="long-term-goal secondary-text">
+                        <div class="long-term-goal-header">
+                            <div>
+                                <h4>Graduate with Honours</h4>
+                                <p>Maintain GPA above 3.8</p>
+                            </div>
+                            <p class="percentage big-text">45%</p>
+                        </div>
+                        <div class="info-icons">
+                            <span><i class="fa-solid fa-calendar"></i> May 2027</span>
+                            <span><i class="fa-solid fa-bullseye"></i> 3/7 semesters</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-status"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <aside class="right-side">
+                <div class="weeks-focus">
+                    <h3>This Week's Focus</h3>
+                    <ul class="weeks-focus-list">
+                        <li>
+                            <i class="fa-regular fa-square"></i>
+                            Complete 5 study sessions
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-square"></i>
+                            Complete 5 study sessions
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-square"></i>
+                            Complete 5 study sessions
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-square"></i>
+                            Complete 5 study sessions
+                        </li>
+                    </ul>
+                </div>
+                <div class="recent-achievement">
+                    <div class="medal">
+                        <i class="fa-solid fa-medal"></i>
+                        <p>Recent Achievement</p>
+                    </div>
+                    <span>🏆</span>
+                    <h6>Study Streak Master!</h6>
+                    <p>Maintained 21-day streak</p>
+                </div>
+                <div class="quote">
+                    <blockquote>
+                        Setting goals is the first step of turning the invisible to visible
+                    </blockquote>
+                    <p class="citer">— Tony Robbins</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

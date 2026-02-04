@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <title>StudyFlow App</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
+                <span>StudyFlow</span>
+            </div>
+
+            <ul class="nav-bar hidden">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Testimonials</a></li>
+            </ul>
+
+            <div class="btn-group hidden">
+                <a href="login.html" id="login-link">Log in</a>
+                <a href="register.html" class="cta-btn secondary-btn">Start for Free</a>
+            </div>
+            <span class="menu-bar" onclick="showNavBar()"><i class="fa-solid fa-bars"></i></span>
+        </nav>
+        <section class="hero-section">
+                <div class="hero-text">
+                    <h1>Master your schedule.<span>Find your Flow</span></h1>
+                    <p>The all-in-one productivity suite designed specifically for the modern student. Track assignments, manage deadlines, and gamify your study sessions.</p>
+                    <a href="register.html" class="cta-btn primary-btn" id="start-btn">Get Started - It's Free</a>
+                </div>
+                <div class="hero-img"></div>                
+        </section>
+    </header>
+    <main>
+        <section class="pain-points">
+            <h2>Because being a student is hard enough</h2>
+            <div class="three-column-layout">
+                <div class="column">
+                    <span class="column-icon"><i class="fa-solid fa-brain"></i></span>
+                    <p><span class="bold">Stop Overwhelming: </span>Centralize tasks from all your classes.</p>
+                </div>
+                <div class="column">
+                    <span class="column-icon"><i class="fa-regular fa-clock"></i></i></span>
+                    <p><span class="bold">Beat Procrastination: </span>Integrated Pomodoro timers and focus modes.</p>
+                </div>
+                <div class="column hidden">
+                    <span class="column-icon"><i class="fa-solid fa-chart-line"></i></span>
+                    <p><span class="bold">Visual Progress: </span>Track your progress and actually see that your to-dos are building up to something.</p>
+                </div>
+            </div>
+            <div class="core-features">
+                <h2>Core Features</h2>
+                    <div class="three-column-layout">
+                        <div class="column">
+                            <span class="column-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-circuit-icon lucide-brain-circuit"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M9 13a4.5 4.5 0 0 0 3-4"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M12 13h4"/><path d="M12 18h6a2 2 0 0 1 2 2v1"/><path d="M12 8h8"/><path d="M16 8V5a2 2 0 0 1 2-2"/><circle cx="16" cy="13" r=".5"/><circle cx="18" cy="3" r=".5"/><circle cx="20" cy="21" r=".5"/><circle cx="20" cy="8" r=".5"/></svg></span>
+                            <p><span class="bold">Smart Dashboard & Overview: </span>View a snapshot of your academic life in one place with clear organization.</p>
+                        </div>
+                        <div class="column">
+                            <span class="column-icon"><i class="fa-solid fa-stopwatch"></i></span>
+                            <p><span class="bold"> Intelligent Time Tracker: </span>Track your study sessions and build consitent habits by understanding your productivity patterns.</p>
+                        </div>
+                        <div class="column">
+                            <span class="column-icon"><i class="fa-solid fa-bullseye"></i></span>
+                            <p><span class="bold">Smart Goal Setting: </span> Transform vague aspirations into actionable plans and visualize your progress.</p>
+                        </div>
+                        <div class="column">
+                            <span class="column-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-no-axes-combined-icon lucide-chart-no-axes-combined"><path d="M12 16v5"/><path d="M16 14v7"/><path d="M20 10v11"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/><path d="M4 18v3"/><path d="M8 14v7"/></svg></i></span>
+                            <p><span class="bold">Advanced Analytics Dashboard: </span>Actually see how you spend your study time, identify improvement areas and make informed decisions based on your actual data.</p>
+                        </div>
+                        <div class="column">
+                            <span class="column-icon"><i class="fa-solid fa-list-check"></i></span>
+                            <p><span class="bold">Dynamic Task Management: </span>Prioritize your tasks and activities effectively while having satisfaction through completion tracking.</p>
+                        </div>
+                        <div class="column">
+                            <span class="column-icon"><i class="fa-regular fa-calendar-days"></i></span>
+                            <p><span class="bold">Integrated Calendar & Schedule Planner: </span>Have a unified view of all your academic commitments with balanced time allocation across subjects,.</p>
+                        </div>
+                    </div>
+            <div class="social-proof-section">
+                <h2>Join The Community of 10,000+ students from top universities.</h3>
+                    <div class="carousel">
+                        <div class="card user-card">
+                            <div class="card-top">
+                                <img src="Images/sarahM.png" alt="user profile pic">
+                                <div class="user-info">
+                                    <p > Sarah M. - Pre-Med Student, UCLA</p>
+                                    <p >"Studyflow literally saved my GPA!"</p>
+                                    <p >⭐⭐⭐⭐⭐</p>
+                                </div>
+                            </div>
+                            <p class="testimony"><q>I was drowning in assignments and had zero idea how to manage my time. The analytics dashboard is a game-changer - Helped me start studying during my peak times and my grades jumped from B's to A's.🔥</q></p>
+                        </div>
+                        <div class="card user-card">
+                            <div class="card-top">
+                                <img src="Images/marcus.png" alt="user profile pic">
+                                <div class="user-info">
+                                    <p>Marcus Johnson - Engineering Major, MIT</p>
+                                    <p>"Finally, an app that gets how students actually study"</p>
+                                    <p>⭐⭐⭐⭐⭐</p>
+                                </div>
+                            </div>
+                            <p class="testimony"><q>I've tried Notion, Todoist, Google Calendar, you name it. They're all either too complicated or too basic. Studyflow hits the sweet spot. My parents think I'm lying about how much I study now lol.</q></p>
+                        </div>
+                        <div class="card user-card">
+                            <div class="card-top">
+                               <img src="Images/emily.png" alt="">
+                                <div class="user-info">
+                                    <p>Emily Chen - Psychology Student, Stanford</p>
+                                    <p>"The accountability partner I didn't know I needed"</p>
+                                    <p>⭐⭐⭐⭐⭐</p>
+                                </div>
+                            </div>
+                            <p class="testimony"><q>As someone with ADHD, staying organized is my biggest challenge. Studyflow's visual progress bars and color-coding system work perfectly with how my brain operates. 10/10 would recommend to any neurodivergent student!</q></p>
+                        </div>
+                        <div class="card user-card">
+                            <div class="card-top">
+                                <img src="Images/david.png" alt="user profile pic">
+                                <div class="user-info">
+                                    <p> David Rodriguez - Business Student, UT Austin</p>
+                                    <p>"From procrastinator to productivity machine"</p>
+                                    <p>⭐⭐⭐⭐⭐</p>
+                                </div>
+                            </div>
+                            <p class="testimony"><q>I used to be the guy who started studying the night before exams. Studyflow changed everything. Now I'm consistently hitting 28-30 hours/week with 85%+ focus scores. Ended last semester with a 3.8 GPA, up from my usual 3.2. My mom literally cried happy tears.</q></p>
+                        </div>
+                        <div class="card user-card">
+                            <div class="card-top">
+                                <img src="Images/priya.png" alt="user profile pic">
+                                <div class="user-info">
+                                    <p>Priya Patel - Computer Science, Stanford</p>
+                                    <p>"The data nerd's dream productivity app"</p>
+                                    <p>⭐⭐⭐⭐⭐</p>
+                                </div>
+                            </div>
+                            <p class="testimony"><q>As a CS major, I LOVE data. Studyflow's analytics dashboard is incredible - study hours by day, time distribution by subject, peak productivity hours, completion rates... it's all there. Studyflow isn't just an app, it's a lifestyle upgrade. 💯</q></p>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h2>Ready to upgrade your study game?</h2>
+        <div class="cta-btn-group">
+            <a class="cta-btn primary-btn">Sign up with Google</a>
+            <a class="cta-btn secondary-btn">Sign up with Email</a>
+        </div>
+        <div class="footer">
+            <ul class="footer-links">
+                <li><i class="fa-regular fa-user"></i> <a href="#">Contact Us</a></li>
+                <li><i class="fa-solid fa-shield-halved"></i> <a href="#">Privacy</a></li>
+                <li><i class="fa-regular fa-file-lines"></i> <a href="#">Terms</a></li>
+            </ul>
+            <p>&copy; 2026 StudyFlow. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

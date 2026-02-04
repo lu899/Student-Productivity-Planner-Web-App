@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <title>Sign In</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
+                <span>StudyFlow</span>
+            </div>
+
+            <ul class="nav-bar hidden">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+            </ul>
+            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+        </nav>
+    </header>
+    <main>
+        <section class="user-details card">
+            <h1 class="primary-text">Sign In</h1>
+            <h6 class="secondary-text">Welcome back, your goals missed you.</h6>
+            <div class="details-container">
+                <div class="details-div">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+
+                <div class="details-div">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <span class="show-password"><i class="fa-regular fa-eye"></i></span>
+                    <p class="forgot"><a href="#">Forgot password?</a></p>
+                </div>      
+            </div>
+            <button id="login" class="btn">Sign In</button>
+            <p class="secondary-text">or sign in with</p>
+            <div class="icons flex">
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-apple"></i>
+            </div>
+            <p class="sign-in">Don't have an account? <a href="register.html">Sign Up</a></p>
+        </section>
+    </main>
+    <div class="img-section">
+            <p>Everything you need to stay on track</p>
+            <h1>Manage your schedule, tasks, goals and more. All in one place.</h1>
+    </div>
+</body>
+</html>
