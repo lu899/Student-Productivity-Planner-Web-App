@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header>
-        <div class="nav-text">
-            <h1>Time Tracker</h1>
-            <p>Track your study sessions and stay focused</p>
-        </div>
-        <div class="bottom-nav linear-gradient">
+<body class="main-dashboard">
+    <div class="left-side linear-gradient visible">
+            <div class="logo">
+                <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
+                <h2>StudyFlow</h2>
+            </div>
+
             <div class="nav-list">
                 <ul>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
                         <a href="dashboard.html">Dashboard</a></li>
 
-                    <li>
+                    <li class="active">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg> 
                         <a href="tasks.html">Tasks</a>
                     </li>
@@ -36,7 +36,7 @@
                         <a href="goals.html">Goals</a>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                         <a href="tracker.html">Time Tracker</a>
                     </li>
@@ -48,18 +48,24 @@
 
                     <li>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <a href="profile.html">Profile</a>
+                        <button id="log-out">Log out</button>
                     </li>
                 </ul>
             </div>
             <div class="study-streak active">
                 <p>Study Streak</p>
                 <p class="streak bold">7 Days 🔥</p>
+             </div>
+    </div>
+    
+    <div class="main">
+        <header id="clear-bg">
+            <div class="nav-text">
+                <h1>Time Tracker</h1>
+                <p>Track your study sessions and stay focused</p>
             </div>
-        </div>
-        <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
-    </header>
-    <main>
+            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+        </header>
         <div class="tracker-container">
             <section class="timer-section">
                 <div class="pomodoro-timer">
@@ -241,8 +247,8 @@
                 </div>
             </section>
         </div>
-    </main>
+    </div>
 
-    <script src="JS/timer.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

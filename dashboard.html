@@ -8,20 +8,8 @@
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
     <title>StudyFlow Dashboard</title>
 </head>
-<body>
-    <header class="primary-color">
-        <div class="top-side">
-            <div class="welcome-text">
-                <h2>Dashboard</h2>
-                <p id="welcome-text">Welcome back, Lucy! Ready to study?</p>
-            </div>
-            <div class="search-task hidden">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search tasks...">
-            </div>
-            <span class="notification-bell hidden"><i class="fa-regular fa-bell"></i></span>
-        </div>
-        <div class="left-side linear-gradient hidden">
+<body class="main-dashboard">
+    <div class="left-side linear-gradient visible">
             <div class="logo">
                 <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
                 <h2>StudyFlow</h2>
@@ -60,7 +48,7 @@
 
                     <li>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <a href="profile.html">Profile</a>
+                        <button id="log-out">Log out</button>
                     </li>
                 </ul>
             </div>
@@ -68,131 +56,164 @@
                 <p>Study Streak</p>
                 <p class="streak bold">7 Days 🔥</p>
              </div>
-        </div>
-        <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
-    </header>
-    <main>
-        <section class="three-column-layout">
+    </div>
+    <div class="main">
+        <header class="primary-color">
+            <div class="top-side">
+                <div class="welcome-text">
+                    <h2>Dashboard</h2>
+                    <p id="welcome-text">Welcome back, Lucy! Ready to study?</p>
+                </div>
+                <div class="search-task hidden">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search tasks..." class="search-input">
+                </div>
+                <span class="notification-bell hidden"><i class="fa-regular fa-bell"></i></span>
+            </div>
+            
+            <span class="menu-bar" onclick="toggle()"><i class="fa-solid fa-bars"></i></span>
+        </header>
+        <section class="three-column-layout layout">
             <div class="overview-card card">
                 <div class="grid">
-                    <span class="icon">
+                    <span class="icon opaque-blue">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                     </span>
-                    <p>Goals</p>
+                    <p class="secondary-text">Goals Acheived</p>
                 </div>
                 <h3>15/20</h3>
             </div>
             <div class="overview-card card">
                 <div class="grid">
-                    <span class="icon">
+                    <span class="icon opaque-green">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                     </span>
-                    <p>Study hours</p>
+                    <p class="secondary-text">Study hours</p>
                 </div>                
                 <h3>23.5hrs</h3>
             </div>
             <div class="overview-card card">
                 <div class="grid">
-                    <span class="icon">
+                    <span class="icon opaque-pink">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
                     </span>
-                    <p>Tasks Done</p>
+                    <p class="secondary-text">Tasks Done</p>
                 </div>
                 <h3>38/40</h3>
             </div>
         </section>
         <section class="main-content">
             <section class="tasks-display">
-                <div class="header">
+                <div class="heading">
                     <h3>Today's Schedule</h3 >
                     <button id="view-all-btn">View All</button>
-                    <span id="filter-icon"><i class="fa-solid fa-filter"></i></span>
-                    <span class="tooltiptext">Filter Tasks</span>
-                    <div class="selection-modal hidden">
-                        <select name="filter" id="filter">
-                            <option value="none">None</option>
-                            <option value="date">Date</option>
-                            <option value="category">Category</option>
-                            <option value="type">Type</option>
-                            <option value="priority">Priority</option>
-                        </select>
+                    
+                </div>
+                <div class="tasks-content">
+                    <div class="task">
+                        <div class="left">    
+                            <div class="line primary-color"></div> 
+                            <div class="task-text">
+                                <p class="primary-text bold">Design Website</p>
+                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
+                    <div class="task">
+                        <div class="left">
+                            <div class="line secondary-color"></div> 
+                            <div class="task-text">
+                                <p class="primary-text bold">Design Website</p>
+                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="task">
+                        <div class="left">
+                            <div class="line"></div> 
+                            <div class="task-text">
+                                <p class="primary-text bold">Design Website</p>
+                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="task">
+                        <div class="left">
+                            <div class="line"></div> 
+                            <div class="task-text">
+                                <p class="primary-text bold">Design Website</p>
+                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+            <section class="deadlines">
+                <div class="heading">
+                    <h3>Upcoming Deadlines</h3>
+                    <span id="add-deadline"><i class="fa-solid fa-plus"></i></span>
                 </div>
                 <div class="tasks-content">
                     <div class="task">
                         <div class="left">
-                            <div class="line"></div> 
+                            <div class="line"></div>
                             <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                                <p class="primary-text bold">Physics Lab Report</p>
+                                <p class="secondary-text">Jan 26</p>
                             </div>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        <span class="priority-text">High</span>
                     </div>
                     <div class="task">
                         <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
+                        <div class="line"></div>
+                        <div class="task-text">
+                            <p class="primary-text bold">Physics Lab Report</p>
+                            <p class="secondary-text">Jan 26</p>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        </div>
+                        <span class="priority-text">Medium</span>
                     </div>
                     <div class="task">
                         <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
+                        <div class="line"></div>
+                        <div class="task-text">
+                            <p class="primary-text bold">Physics Lab Report</p>
+                            <p class="secondary-text">Jan 26</p>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        </div>
+                        <span class="priority-text">Low</span>
                     </div>
                     <div class="task">
                         <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
+                        <div class="line primary-color"></div>
+                        <div class="task-text">
+                            <p class="primary-text bold">Physics Lab Report</p>
+                            <p class="secondary-text">Jan 26</p>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        </div>
+                        <span class="priority-text">Low</span>
                     </div>
-                </div>
-            </section>
-            <section class="deadlines hidden">
-                <div class="heading">
-                    <h2>Upcoming Deadlines</h2>
-                    <button class="primary-btn" id="add-deadline"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="task">
-                    <div class="line"></div>
-                    <div class="task-text">
-                        <p class="primary-text bold">Physics Lab Report</p>
-                        <p class="secondary-text">Jan 26</p>
-                    </div>
-                    <span class="priority-text">High</span>
-                </div>
-                <div class="task">
-                    <div class="line"></div>
-                    <div class="task-text">
-                        <p class="primary-text bold">Physics Lab Report</p>
-                        <p class="secondary-text">Jan 26</p>
-                    </div>
-                    <span class="priority-text">Medium</span>
-                </div>
-                <div class="task">
-                    <div class="line"></div>
-                    <div class="task-text">
-                        <p class="primary-text bold">Physics Lab Report</p>
-                        <p class="secondary-text">Jan 26</p>
-                    </div>
-                    <span class="priority-text">Low</span>
                 </div>
             </section>
         </section>
-    </main>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -8,20 +8,8 @@
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
     <title>StudyFlow App</title>
 </head>
-<body>
-    <header class="primary-color">
-        <div class="top-side">
-            <div class="welcome-text">
-                <h2>My Tasks</h2>
-                <p id="welcome-text">View all your task at one place</p>
-            </div>
-            <div class="search-task hidden">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search tasks...">
-            </div>
-            <span class="notification-bell hidden"><i class="fa-regular fa-bell"></i></span>
-        </div>
-        <div class="left-side linear-gradient">
+<body class="main-dashboard">
+    <div class="left-side linear-gradient visible">
             <div class="logo">
                 <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
                 <h2>StudyFlow</h2>
@@ -60,7 +48,7 @@
 
                     <li>
                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <a href="profile.html">Profile</a>
+                        <button id="log-out">Log out</button>
                     </li>
                 </ul>
             </div>
@@ -68,11 +56,24 @@
                 <p>Study Streak</p>
                 <p class="streak bold">7 Days 🔥</p>
              </div>
-        </div>
-        <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
-    </header>
-    <main>
-        <section class="card-container">
+    </div>
+    
+    <div class="main">
+        <header class="primary-color">
+            <div class="top-side">
+                <div class="welcome-text">
+                    <h2>My Tasks</h2>
+                    <p id="welcome-text">View all your task at one place</p>
+                </div>
+                <div class="search-task hidden">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Search tasks...">
+                </div>
+                <span class="notification-bell hidden"><i class="fa-regular fa-bell"></i></span>
+            </div>
+            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+        </header>
+        <section class="progress-container">
             <div class="
             card" id="in-progress">
                 <div class="flex">
@@ -102,31 +103,37 @@
             </div>
         </section>
         <section class="tasks-display">
-                <div class="header">
+                <div class="heading">
                     <h3>Today's Schedule</h3 >
                     <button id="view-all-btn">View All</button>
-                    <span id="filter-icon"><i class="fa-solid fa-filter"></i></span>
-                    <span class="tooltiptext">Filter Tasks</span>
-                    <div class="selection-modal hidden">
-                        <select name="filter" id="filter">
-                            <option value="none">None</option>
-                            <option value="date">Date</option>
-                            <option value="category">Category</option>
-                            <option value="type">Type</option>
-                            <option value="priority">Priority</option>
-                        </select>
-                    </div>
+                    
                 </div>
                 <div class="tasks-content">
                     <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
+                        <div class="left">    
+                            <div class="line primary-color"></div> 
                             <div class="task-text">
                                 <p class="primary-text bold">Design Website</p>
                                 <p class="secondary-text">8.00AM - 9.00AM</p>
                             </div>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="task">
+                        <div class="left">
+                            <div class="line secondary-color"></div> 
+                            <div class="task-text">
+                                <p class="primary-text bold">Design Website</p>
+                                <p class="secondary-text">8.00AM - 9.00AM</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div class="task">
                         <div class="left">
@@ -136,7 +143,10 @@
                                 <p class="secondary-text">8.00AM - 9.00AM</p>
                             </div>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div class="task">
                         <div class="left">
@@ -146,22 +156,15 @@
                                 <p class="secondary-text">8.00AM - 9.00AM</p>
                             </div>
                         </div>
-                        <input type="checkbox" name="task-status" id="task-status">
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <input type="checkbox" name="task-status" id="task-status">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="task-status" class="task-status">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
             </section>
          <button id="add-task-btn" class="btn">Add Task</button>
-    </main>
+    </div>
 
     <div class="modal" id="eventModal">
         <div class="modal-content">
@@ -232,5 +235,6 @@
             </form>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

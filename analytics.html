@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header class="padding">
-        <div class="nav-text">
-            <h1>Analystics Dashboard</h1>
-            <p>Track your progress and optimize your study habits</p>
-        </div>
-        <div class="bottom-nav linear-gradient">
+<body class="main-dashboard">
+    <div class="left-side linear-gradient visible">
+            <div class="logo">
+                <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
+                <h2>StudyFlow</h2>
+            </div>
+
             <div class="nav-list">
                 <ul>
                     <li>
@@ -41,95 +41,106 @@
                         <a href="tracker.html">Time Tracker</a>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
                         <a href="analytics.html">Analytics</a>
                     </li>
 
                     <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <a href="profile.html">Profile</a>
+                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <button id="log-out">Log out</button>
                     </li>
                 </ul>
             </div>
-        </div>
-        <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+            <div class="study-streak active">
+                <p>Study Streak</p>
+                <p class="streak bold">7 Days 🔥</p>
+             </div>
+    </div>
+    
+    <div class="main">
+        <header class="padding">
+            <div class="nav-text">
+                <h1>Analystics Dashboard</h1>
+                <p>Track your progress and optimize your study habits</p>
+            </div>
+            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
 
-        <div class="view-btn-group">
-            <button class="primary-btn view-btn btn-active">This Week</button>
-            <button class="primary-btn view-btn">This Month</button>
-            <button class="primary-btn view-btn">This Semester</button>
-            <button class="primary-btn view-btn">All Time</button>
-        </div>
-        <div class="four-column-layout">
-            <div class="card flex-card">
-                <div class="card-top">
-                    <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
-                    </span>
-                    <span class="productivity-score">
-                        <p>+12%</p> 
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </span>
-                </div>
-                <div class="column-layout">
-                    <p class="secondary-text">Total Study Hours</p>
-                <p class="bold">125.5 h</p>
-                </div>
+            <div class="view-btn-group">
+                <button class="primary-btn view-btn btn-active">This Week</button>
+                <button class="primary-btn view-btn">This Month</button>
+                <button class="primary-btn view-btn">This Semester</button>
+                <button class="primary-btn view-btn">All Time</button>
             </div>
 
-            <div class="card flex-card">
-                <div class="card-top">
-                    <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                    </span>
-                    <span class="productivity-score">
-                        <p>86%</p> 
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </span>
+            <div class="four-column-layout">
+                <div class="card flex-card">
+                    <div class="card-top">
+                        <span class="icon opaque-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                        </span>
+                        <span class="productivity-score">
+                            <p>+12%</p> 
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </span>
+                    </div>
+                    <div class="column-layout">
+                        <p class="secondary-text">Total Study Hours</p>
+                    <p class="bold">125.5 h</p>
+                    </div>
                 </div>
-                <div class="column-layout">
-                    <p class="secondary-text">Goals Achieved</p>
-                <p class="bold">45/52</p>
-                </div>
-            </div>
 
-            <div class="card flex-card">
-                <div class="card-top">
-                    <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
-                    </span>
-                    <span class="productivity-score">
-                        <p>+8%</p> 
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </span>
+                <div class="card flex-card">
+                    <div class="card-top">
+                        <span class="icon opaque-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                        </span>
+                        <span class="productivity-score">
+                            <p>86%</p> 
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </span>
+                    </div>
+                    <div class="column-layout">
+                        <p class="secondary-text">Goals Achieved</p>
+                    <p class="bold">45/52</p>
+                    </div>
                 </div>
-                <div class="column-layout">
-                    <p class="secondary-text">Tasks Completed</p>
-                <p class="bold">45/52</p>
-                </div>
-            </div>
 
-            <div class="card flex-card">
-                <div class="card-top">
-                    <span class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
-                    </span>
-                    <span class="productivity-score">
-                        <p>+5pts</p> 
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </span>
+                <div class="card flex-card">
+                    <div class="card-top">
+                        <span class="icon opaque-purple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+                        </span>
+                        <span class="productivity-score">
+                            <p>+8%</p> 
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </span>
+                    </div>
+                    <div class="column-layout">
+                        <p class="secondary-text">Tasks Completed</p>
+                    <p class="bold">45/52</p>
+                    </div>
                 </div>
-                <div class="column-layout">
-                    <p class="secondary-text">Productivity Score</p>
-                <p class="bold">87/100</p>
+
+                <div class="card flex-card">
+                    <div class="card-top">
+                        <span class="icon opaque-orange">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                        </span>
+                        <span class="productivity-score">
+                            <p>+5pts</p> 
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </span>
+                    </div>
+                    <div class="column-layout">
+                        <p class="secondary-text">Productivity Score</p>
+                    <p class="bold">87/100</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <main>
+        </header>
         <div class="two-column-layout">
-            <section class="day-study-hrs">
+            <section class="study-hrs">
                 <h2>Study Hours by Day</h2>
                 <div class="day">
                     <p>Monday</p>
@@ -168,7 +179,7 @@
                     </div>
                 </div>
             </section>
-            <section class="subject-study-hrs">
+            <section class="study-hrs">
                 <h2>Study Time by Subject</h2>
                 <div>
                     <span class="subject">
@@ -248,23 +259,21 @@
             <section id="completion-rate" class="card">
                 <span class="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
-                    <p class="bold medium-text">Completion Rate</p>
+                    <h3 class="bold medium-text">Completion Rate</h3>
                 </span>
                 <div class="rate-circle">
-                    <div class="inner-rate-circle">
                         <div class="rate">
                             <p class="bold">84%</p>
                             <p class="secondary-text">This Week</p>
                         </div>
-                    </div>
                 </div>
                 <div class="rate-stats">
                     <span>
-                        <p class="bold">234</p>
+                        <p class="bold" style="color: var(--success-color);">234</p>
                         <p class="secondary-text">Completed</p>
                     </span>
                     <span>
-                        <p class="bold">38</p>
+                        <p class="bold" style="color: var(--pink-accent);">38</p>
                         <p class="secondary-text">Pending</p>
                     </span>
                 </div>
@@ -280,14 +289,14 @@
                     <p class="secondary-text">Current Streak</p>
                 </div>
                 <div class="streak-stats">
-                    <span>
+                    <div>
                         <p class="secondary-text">Longest Streak</p>
                         <p class="bold">35 days</p>
-                    </span>
-                    <span>
+                    </div>
+                    <div>
                         <p class="secondary-text">Study Days</p>
                         <p class="bold">89/120</p>
-                    </span>
+                    </div>
                 </div>
             </section>
         </div>
@@ -321,29 +330,35 @@
                     <i class="fa-solid fa-bullseye bull"></i>
                     <h3>Goal Progress</h3>
                 </span>
-                <div class="space">
-                    <p class="primary-text">Study 30 hours/week</p>
-                    <span>On Track</span>
+                <div class="div">
+                    <div class="space">
+                        <p class="primary-text">Study 30 hours/week</p>
+                        <span>On Track</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-status"></div>
+                    </div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-status"></div>
+                <div class="div">
+                    <div class="space">
+                        <p class="primary-text">Complete All Assignments</p>
+                        <span class="goals-active">Completed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-status"></div>
+                    </div>
                 </div>
-                <div class="space">
-                    <p class="primary-text">Complete All Assignments</p>
-                    <span class="goals-active">Completed</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-status"></div>
-                </div>
-                <div class="space">
-                    <p class="primary-text">Practice Problems Daily</p>
-                    <span>Needs Focus</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-status"></div>
+                <div class="div">
+                    <div class="space">
+                        <p class="primary-text">Practice Problems Daily</p>
+                        <span>Needs Focus</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-status"></div>
+                    </div>
                 </div>
             </div>        
         </div>
-    </main>
+    </div>
 </body>
 </html>
