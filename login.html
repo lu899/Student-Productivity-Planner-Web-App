@@ -6,6 +6,7 @@
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>Sign In</title>
 </head>
 <body>
@@ -16,12 +17,7 @@
                 <span>StudyFlow</span>
             </div>
 
-            <ul class="nav-bar hidden">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-            </ul>
-            <span class="menu-bar" onclick="showNavBar()"><i class="fa-solid fa-bars"></i></span>
+            <a href="index.html">Home</a>
         </nav>
     </header>
     <main>
@@ -36,21 +32,28 @@
 
                 <div class="details-div">
                     <label for="password">Password:</label>
-                    <input type="password" id="password" placeholder="Enter your password">
+                    <input type="password" id="login-password" autocomplete="new-password" placeholder="Enter your password">
                     <span class="show-password"><i class="fa-regular fa-eye"></i></span>
-                    <p class="forgot"><a href="#">Forgot password?</a></p>
+                    <span id="forgot-pass" class="forgot">Forgot password?</span>
                 </div>      
             </div>
             <button id="login" class="btn">Sign In</button>
             <p class="secondary-text">or sign in with</p>
             <div class="icons flex">
-                <i class="fa-brands fa-google"></i>
-                <i class="fa-brands fa-apple"></i>
+                <i class="fa-brands fa-google" id="google-login"></i>
             </div>
             <p class="sign-in">Don't have an account? <a href="register.html">Sign Up</a></p>
         </section>
+
+        <div id="forgot-password-section">
+            <div class="forgot-modal form">
+                <input type="email" id="reset-email" placeholder="Enter your registered email">
+                <button onclick="sendResetEmail()" class="btn">Send Reset Link</button>
+                <button id="close-btn" class="btn">Close modal</button>
+            </div>
+        </div>
     </main>
     
-    <script src="script.js"></script>
+    <script type="module" src="JS/login_register.js"></script>
 </body>
 </html>

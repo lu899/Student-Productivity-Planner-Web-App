@@ -6,6 +6,7 @@
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>StudyFlow App</title>
 </head>
 <body class="main-dashboard">
@@ -54,7 +55,7 @@
             </div>
             <div class="study-streak active">
                 <p>Study Streak</p>
-                <p class="streak bold">7 Days 🔥</p>
+                <p class="streak bold"><span id="streak-days"></span> Days 🔥</p>
              </div>
     </div>
     
@@ -80,7 +81,7 @@
                     <div class="circle"></div>
                     <h5>In Progress 🔥</h5>
                 </div>
-                <p class="day-num bold">0</p>
+                <p class="day-num bold" id="tasks-in-progress"></p>
                 <p class="secondary-text">Last 7 Days</p>
             </div>
             <div class="
@@ -89,7 +90,7 @@
                     <div class="circle"></div>
                     <h5>Completed 📌</h5>
                 </div>
-                <p class="day-num bold">12</p>
+                <p class="day-num bold" id="completed-tasks"></p>
                 <p class="secondary-text">Last 7 Days</p>
             </div>
             <div class="
@@ -98,97 +99,51 @@
                    <div class="circle"></div>
                     <h5>Overdue 😭</h5> 
                 </div>
-                <p class="day-num bold">12</p>
+                <p class="day-num bold" id="overdue-tasks"></p>
                 <p class="secondary-text">Last 7 Days</p>
             </div>
         </section>
-        <section class="tasks-display">
-                <div class="heading">
-                    <h3>Today's Schedule</h3 >
-                    <button id="view-all-btn">View All</button>
+        <section class="main-content">
+            <section class="tasks-display">
+                <h3>Your Tasks</h3 >
+                <div class="tasks-content" id="tasks-container">
                     
                 </div>
-                <div class="tasks-content">
-                    <div class="task">
-                        <div class="left">    
-                            <div class="line primary-color"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line secondary-color"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
+            </section>
+            <section class="deadlines">
+                <h3>Upcoming Deadlines</h3>
+                <div class="tasks-content" id="deadlines-container">
+                   
                 </div>
             </section>
-         <button id="add-task-btn" class="btn">Add Task</button>
+        </section>
+        <button id="add-task-btn" class="btn">Add Task</button>
     </div>
 
     <div class="modal" id="eventModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h1>Add Task</h1>
-                <span><i class="fa-solid fa-circle-xmark"></i></span>
+                <span id="close-modal-btn"><i class="fa-solid fa-circle-xmark"></i></span>
             </div>
             <form id="addTaskForm" class="form">
-                <div class="input-div">
+                <div>
                     <label for="title">Title* :</label>
                     <input type="text" id="title" placeholder="Enter task title" required>
                 </div>
                 
-                <div class="input-div">
-                    <label for="subject">Subject* :</label>
+                <div>
+                    <div class="subject-div">
+                        <label for="subject">Subject* : </label>
+                        <span id="add-option">Add Subject</span>
+                    </div>
+                    <input type="text" id="new-option"  class="no-display" placeholder="Press Enter to add new subject">
                     <select name="subject" id="subject">
-                        <option value="mathematics">Mathematics</option>
-                        <option value="science">Science</option>
-                        <option value="computer-science">Computer Science</option>
-                        <option value="other">Other</option>
+                        
                     </select>
                 </div>
 
-                <div class="input-div">
+                <div>
                     <label for="priority">Priority* :</label>
                     <select name="priority" id="priority">
                         <option value="high">High Priority</option>
@@ -197,44 +152,42 @@
                     </select>
                 </div>
 
-                <div class="input-div">
+                <div>
                     <label for="type">Task Type* :</label>
                     <select name="type" id="type" required>
                         <option value="assignment">Assignment</option>
                         <option value="study">Study Session</option>
                         <option value="project">Project</option>
                         <option value="exam">Exam</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
-                <div class="input-div">
-                    <label for="type">Link to Goal (Optional) :</label>
-                    <select name="type" id="type">
-                        <option value="complete Math Assignment">Math Assignment Completion</option>
-                        <option value="complete Math Assignment">Assignment</option>
-                        <option value="complete Math Assignment">Assignment</option>
-                        <option value="complete Math Assignment">Assignment</option>
+                <div>
+                    <label for="goal-link">Link to Goal (Optional) :</label>
+                    <select name="goal-link" id="goal-link">
+                        
                     </select>
                 </div>
                 
-                <div class="input-div">
+                <div>
                     <label for="due-date">Due Date* :</label>
                     <input type="date" name="due-date" id="due-date" required>
                 </div>
 
-                <div class="input-div">
+                <div>
                     <label for="due-time">Due Time* :</label>
                     <input type="time" name="due-time" id="due-time" required>
                 </div>
 
-                <div class="input-div">
+                <div>
                     <label for="description">Description (optional) :</label>
                     <textarea name="description" id="description" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn">Submit</button>
+                <button class="btn" id="submit-btn">Submit</button>
             </form>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="JS/tasks.js"></script>
 </body>
 </html>

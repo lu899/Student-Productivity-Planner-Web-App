@@ -165,6 +165,9 @@ nav{
     font-family: var(--secondary-font);
     border-radius: 10px;
 }
+.btn{
+    margin-inline: auto;
+}
 #start-btn{
     padding:  15px;
     transition: all .6s ease;
@@ -356,7 +359,32 @@ footer .cta-btn-group{
     color: var(--primary-color);
     margin-top: 1.5rem;
 }
-.forgot a, .sign-in a{
+#pass-strength{
+    color: var(--success-color);
+}
+#forgot-password-section{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-inline: auto;
+    border-radius: 8px;
+    display: none;
+    border: 1px solid var(--textSecondary);
+}
+.forgot-modal{
+    font-size: 2rem;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+    background-color: var(--card-background);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+.forgot, .sign-in a{
     color: var(--primary-color);
     font-size: 0.9rem;
     cursor: pointer;
@@ -470,7 +498,7 @@ header.primary-color{
 .tasks-display, .deadlines{
     background-color: var(--card-background);
     border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     padding: 15px;
     width: 80%;
     margin-inline: auto;
@@ -493,79 +521,22 @@ header.primary-color{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 15px;
 }
 .task{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
     width: 100%;
-    padding: 8px 20px;
-    height: 5rem;
+    padding: 5px;
     border-radius: 8px;
     background-color: var(--background-color);
 }
 .line{
     width: 3px;
-    height: 35px;
+    height: 50px;
     border-radius: 2px;
-}
-.custom-checkbox {
-    display: inline-block;
-    position: relative;
-    padding-left: 28px;
-    margin-right: 8px;
-    cursor: pointer;
-    font-size: 1.1em;
-    user-select: none;
-    height: 24px;
-}
-.custom-checkbox input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 22px;
-    width: 22px;
-    background-color: #fff;
-    border-radius: 6px;
-    transition: background 0.2s, border 0.2s;
-}
-.custom-checkbox input:checked ~ .checkmark {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-.custom-checkbox input:checked ~ .checkmark:after {
-    display: block;
-}
-.custom-checkbox .checkmark:after {
-    left: 7px;
-    top: 2px;
-    width: 6px;
-    height: 12px;
-    border: solid #fff;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-    content: "";
-}
-#add-deadline{
-    border-radius: 5px;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    font-size: 1rem;
-    padding-inline: 10px;
-    cursor: pointer;
 }
 .priority-text{
     border-radius: 10px;
@@ -608,9 +579,6 @@ header.primary-color{
 #overdue .circle{
     background-color: var(--warning-color);
 }
-.weeks-focus-list{
-    text-decoration: line-through;
-}
 .flex{
     display: flex;
     align-items: center;
@@ -625,6 +593,49 @@ header.primary-color{
     color: var(--primary-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.no-content{
+    font-size: 2rem;
+    text-align: center;
+}
+.tasks-display h3, .deadlines h3{
+    text-align: center;
+    font-size: 1.2rem;
+}
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+.task-text{
+    flex: 1;
+}
+.task-title{
+    font-weight: 600;
+    color: var(--textPrimary);
+    margin-bottom: 4px;
+}
+.task-goal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.task-goal-link.no-goal{
+    background: #e2e8f0;
+    color: var(--textSecondary);
+}
 .btn{
     border: none;
     border-radius: 8px;
@@ -637,7 +648,7 @@ header.primary-color{
     background-color: var(--primary-color);
     transition: all .6s ease;
 }
-#add-task-btn{
+#add-task-btn, #add-event-btn{
     margin:20px auto;
     display: block;
 }
@@ -686,6 +697,25 @@ header.primary-color{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+.subject-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#add-option{
+    background-color: var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+#new-option{
+    margin-bottom: 5px;
+}
+.no-display{
+    display: none;
 }
 .form label{
     font-weight: 600;
@@ -856,6 +886,11 @@ header.primary-color{
     background: #d1fae5;
     color: #065f46;
     border-left: 3px solid #10b981;
+}
+.event.project{
+    background-color: var(--opaque-purple);
+    color: var(--secondary-color);
+    border-left: 3px solid var(--secondary-color);
 }
 
 .week-view {
@@ -1054,7 +1089,6 @@ header.primary-color{
 }
 .goals-container{
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr); */
     gap: 15px;
     background-color: var(--background-color);
 }
@@ -1068,9 +1102,13 @@ header.primary-color{
 }
 .center{
     display: flex;
-    justify-content: center;
     gap: 25px;
     flex-direction: column;
+}
+.short-term-container, .long-term-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .heading, .goal-heading, .goal-heading h4, .goal-info, .info-icons, .progress-text, .long-term-goal-header, .medal{
     display: flex;
@@ -1080,15 +1118,12 @@ header.primary-color{
 .goal-heading h4{
     color: var(--textPrimary);
 }
-.heading span{
-    background-color: var(--opaque-blue);
-    color: var(--primary-color);
+.goals-active{
     padding: 5px 5px;
     border-radius: 20px;
     font-weight: 600;
 }
 .goal{
-    background-color: var(--opaque-blue);
     border-radius: 8px;
     padding: 15px;
     border: 2px solid var(--border);
@@ -1102,8 +1137,6 @@ header.primary-color{
     cursor: pointer;
 }
 .priority{
-    background-color: var(--opaque-pink);
-    color: var(--pink-accent);
     padding: 3px 5px;
     border-radius: 10px;
 }
@@ -1119,59 +1152,103 @@ header.primary-color{
 }
 .progress-status{
     background-color: var(--primary-color);
-    width: 85%;
     height: 10px;
     border-radius: 8px;
 }
 .long-term-goal{
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    background-color: var(--opaque-pink);
+    gap: 10px;
+    background-color: rgba(16, 185, 129, 0.1);;
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     font-size: 12px;
 }
 .long-term-goal h4{
     color: var(--textPrimary);
 }
+.long-term-goal-header div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 .percentage{
-    color: var(--pink-accent);
     font-weight: bold;
 }
 .big-text{
     font-size: 1.5rem;
 }
 .right-side{
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+    background-color: white;
+    border-radius: 8px;
 }
 .weeks-focus{
     background-color: var(--background-color);
-}
-.weeks-focus-list li{
-    background-color: var(--opaque-blue);
     padding: 10px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    border-radius: 8px;
-    color: var(--textPrimary);
 }
-.recent-achievement{
-    background: linear-gradient(135deg, var(--pink-accent) 0%, var(--primary-color) 100%);
-    color: var(--text-color);
-    padding: 5px 10px;
+.weeks-focus h3{
+    text-align: center;
+}
+.weeks-focus-list{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 15px;
+}
+.goal-item {
+    padding: 15px;
+    margin-block: 15px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    background: #f8fafc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.goal-item:hover {
+    border-color: #6366f1;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.goal-item.selected {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 8px;
-    height: 30%;
+    margin-bottom: 8px;
 }
-.medal{
-    gap: 10px;
+
+.goal-title {
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1.1rem;
 }
-.recent-achievement span{
-    font-size: 5rem;
+
+.goal-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-high { background: #fee2e2; color: #991b1b; }
+.badge-medium { background: #fef3c7; color: #92400e; }
+.badge-low { background: #dbeafe; color: #1e40af; }
+
+.goal-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 10px;
 }
 .quote{
     background-color: var(--opaque-blue);
@@ -1218,6 +1295,15 @@ blockquote::after, blockquote::before{
     align-items: center;
 }
 #timer-msg{
+    color: white;
+    background-color: tomato;
+    display: none;
+    padding: .5rem;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 8px;
+}
+#timer-txt{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1239,7 +1325,6 @@ blockquote::after, blockquote::before{
 .timer{
     display: inline-block;
     padding: 5px;
-    /* width: 500px; */
 }
 .main-pomodoro{
     width: 14rem;
@@ -1261,23 +1346,34 @@ blockquote::after, blockquote::before{
     align-items: center;
     width: 100%;
     height: 100%;
-    position: relative;
-    margin: 2.5rem 0;
     text-align: center;
     border-radius: 50%;
-    box-shadow:  0 4px 20px rgba(99, 102, 241, 0.4);
+    position: relative;
 }
-.pomodoro::before{
-    content: "";
-    position: absolute;
-    border: 13px solid var(--primary-color);
+.pomodoro-width{
+    position: relative;
+    padding: 15px;
+    background: conic-gradient(
+        var(--primary-color) calc(100 * 1%),
+        var(--opaque-blue) 0
+    );
     border-radius: 50%;
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pomodoro-width::before{
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background: var(--text-color);
+    border-radius: 50%;
 }
 .time{
-    font-size: 4rem !important;
-    margin: 20px auto;
+    font-size: 3.5rem !important;
 }
 .btn-container{
     margin-top: 15px;
@@ -1296,7 +1392,7 @@ blockquote::after, blockquote::before{
     font-size: 12px;
     transition: all .3s ease-in;
 }
-.button:hover{
+.button:hover, .button.active-btn{
     transform: translateY(2px);
     box-shadow:  0 4px 20px rgba(99, 102, 241, 0.4);
 }
@@ -1325,6 +1421,11 @@ blockquote::after, blockquote::before{
     font-family: var(--secondary-font);
     font-weight: 300;
     margin-top: 15px;
+}
+.study-sessions{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .study-session{
     background-color: var(--opaque-blue);
@@ -1400,10 +1501,30 @@ blockquote::after, blockquote::before{
     flex-direction: column;
     gap: 8px;
 }
-.goal-tracker span{
+.hrs-details span{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.hrs-details{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.small-div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#set-weekly-goal-btn{
+    border: none;
+    border-radius: 8px;
+    background-color: var(--secondary-color);
+    padding: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-color);
 }
 .bar, .bar-status{
     width: 100%;
@@ -1415,7 +1536,6 @@ blockquote::after, blockquote::before{
 }
 .bar-status{
     background-color: var(--text-color);
-    width: 74%;
 }
 .pomodoro-setter{
     background-color: var(--card-background);
@@ -1442,12 +1562,6 @@ blockquote::after, blockquote::before{
     outline: none;
     border-color: var(--secondary-color);
 }
-.checkbox-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-}
 .tip-div{
     background-color: var(--opaque-green);
     border-radius: 10px;
@@ -1467,6 +1581,10 @@ blockquote::after, blockquote::before{
 .productivity-score p, .productivity-score i{
     color: var(--success-color);
 }
+.btn-active{
+    background-color: var(--primary-color);
+    color: white;
+}
 .day{
     display: flex;
     flex-direction: column;
@@ -1476,6 +1594,7 @@ blockquote::after, blockquote::before{
 .big-bar{
     height: 2rem;
     color: var(--text-color);
+    padding: 5px;
     display: flex;
     align-items: center;
 }
@@ -1508,7 +1627,7 @@ blockquote::after, blockquote::before{
     height: 150px;
     border-radius: 50%;
     background: conic-gradient(
-        var(--success-color) calc(84 * 1%), 
+        var(--success-color) calc(100 * 1%), 
         var(--opaque-blue) 0
     );
     display: flex;
@@ -1628,6 +1747,10 @@ blockquote::after, blockquote::before{
         justify-content: space-between;
     }
     .main-content{
+        margin-inline: auto;
+    }
+
+    .btns-container{
         max-width: 80%;
         margin-inline: auto;
     }
@@ -1645,7 +1768,7 @@ blockquote::after, blockquote::before{
         margin-inline: 1rem;
     }
     .goal-term-container{
-        width: 80%;
+        width: 90%;
         margin-inline: auto;
     }
     .goal, .long-term-goal, .right-side{
@@ -1653,7 +1776,7 @@ blockquote::after, blockquote::before{
         margin-inline: auto;
         font-size: 1rem;
     }
-    #timer-msg{
+    #timer-txt{
         width: 12rem;
     }
     .two-column-layout{
@@ -1805,11 +1928,8 @@ blockquote::after, blockquote::before{
     .top-nav{
         flex-direction: row;
     }
-    #timer-msg{
+    #timer-txt{
         width: 14rem;
-    }
-    .container{
-        margin-left: 250px;
     }
 }
 
@@ -1880,7 +2000,7 @@ blockquote::after, blockquote::before{
     .user-details{
         width: 50%;
     }
-    .main-content{
+    .main-content, .btns-container{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1897,8 +2017,7 @@ blockquote::after, blockquote::before{
         justify-content: space-between;
     }
     .goals-container{
-        display: grid;
-        grid-template-columns: 70% 30%;
+        grid-template-columns: repeat(2, 1fr);
         width: 100%;
     }
     .goal, .long-term-goal{
@@ -1906,9 +2025,9 @@ blockquote::after, blockquote::before{
         margin-inline: none;
         font-size: 1rem;
     }
-    .right-side{
-        background-color: white;
-    }
+    /* .right-side{
+        width: 90%;
+    } */
     #clear-bg{
         background: none;
         padding:0;
@@ -1919,7 +2038,7 @@ blockquote::after, blockquote::before{
         margin-inline: 0;
         margin-top: 15px;
     }
-    #timer-msg{
+    #timer-txt{
         width: 10rem;
     }
     .button{

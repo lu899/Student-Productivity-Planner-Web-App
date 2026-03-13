@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StudyFlow</title>
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="main-dashboard">
     <div class="left-side linear-gradient visible">
@@ -54,7 +55,7 @@
             </div>
             <div class="study-streak active">
                 <p>Study Streak</p>
-                <p class="streak bold">7 Days 🔥</p>
+                <p class="streak bold"><span id="streak-days"></span> Days 🔥</p>
              </div>
     </div>
     
@@ -80,13 +81,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                         </span>
                         <span class="productivity-score">
-                            <p>+12%</p> 
+                            <p>0</p> 
                             <i class="fa-solid fa-arrow-up"></i>
                         </span>
                     </div>
                     <div class="column-layout">
                         <p class="secondary-text">Total Study Hours</p>
-                    <p class="bold">125.5 h</p>
+                    <p class="bold" id="total-study-hrs">0</p>
                     </div>
                 </div>
 
@@ -96,13 +97,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target-icon lucide-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                         </span>
                         <span class="productivity-score">
-                            <p>86%</p> 
+                            <p>0</p> 
                             <i class="fa-solid fa-arrow-up"></i>
                         </span>
                     </div>
                     <div class="column-layout">
                         <p class="secondary-text">Goals Achieved</p>
-                    <p class="bold">45/52</p>
+                    <p class="bold" id="goals-achieved">0/0</p>
                     </div>
                 </div>
 
@@ -112,13 +113,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
                         </span>
                         <span class="productivity-score">
-                            <p>+8%</p> 
+                            <p>0</p> 
                             <i class="fa-solid fa-arrow-up"></i>
                         </span>
                     </div>
                     <div class="column-layout">
                         <p class="secondary-text">Tasks Completed</p>
-                    <p class="bold">45/52</p>
+                    <p class="bold" id="tasks-completed">0/0</p>
                     </div>
                 </div>
 
@@ -128,13 +129,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
                         </span>
                         <span class="productivity-score">
-                            <p>+5pts</p> 
+                            <p>0</p> 
                             <i class="fa-solid fa-arrow-up"></i>
                         </span>
                     </div>
                     <div class="column-layout">
                         <p class="secondary-text">Productivity Score</p>
-                    <p class="bold">87/100</p>
+                    <p class="bold">0/0</p>
                     </div>
                 </div>
             </div>
@@ -145,78 +146,45 @@
                 <div class="day">
                     <p>Monday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
                 <div class="day">
-                    <p>Monday</p>
+                    <p>Tuesday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
                 <div class="day">
-                    <p>Monday</p>
+                    <p>Wednesday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
                 <div class="day">
-                    <p>Monday</p>
+                    <p>Thursday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
                 <div class="day">
-                    <p>Monday</p>
+                    <p>Friday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
                 <div class="day">
-                    <p>Monday</p>
+                    <p>Saturday</p>
                     <div class="progress-bar big-bar">
-                        <div class="progress-status big-bar">3.45h</div>
+                        <div class="progress-status big-bar"></div>
                     </div>
                 </div>
             </section>
             <section class="study-hrs">
                 <h2>Study Time by Subject</h2>
-                <div>
-                    <span class="subject">
-                        <p class="bold">Mathematics</p>
-                        <p class="secondary-text">28.5(35%)</p>
-                    </span>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
-                <div>
-                    <span class="subject">
-                        <p class="bold">Mathematics</p>
-                        <p class="secondary-text">28.5(35%)</p>
-                    </span>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
-                <div>
-                    <span class="subject">
-                        <p class="bold">Mathematics</p>
-                        <p class="secondary-text">28.5(35%)</p>
-                    </span>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
-                <div>
-                    <span class="subject">
-                        <p class="bold">Mathematics</p>
-                        <p class="secondary-text">28.5(35%)</p>
-                    </span>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
+                <div class="study-by-subject">
+
+                </div>                
             </section>
         </div>
         <div class="peak">
@@ -227,8 +195,8 @@
                 </span>
                 <div class="hours">
                     <span class="subject">
-                        <p class="secondary-text">8-10 AM</p>
-                        <p class="bold">85%</p>
+                        <p class="secondary-text">6-8 AM</p>
+                        <p class="bold">0%</p>
                     </span>
                     <div class="progress-bar">
                         <div class="progress-status"></div>
@@ -237,7 +205,7 @@
                 <div class="hours">
                     <span class="subject">
                         <p class="secondary-text">8-10 AM</p>
-                        <p class="bold">85%</p>
+                        <p class="bold">0%</p>
                     </span>
                     <div class="progress-bar">
                         <div class="progress-status"></div>
@@ -245,8 +213,8 @@
                 </div>
                 <div class="hours">
                     <span class="subject">
-                        <p class="secondary-text">8-10 AM</p>
-                        <p class="bold">85%</p>
+                        <p class="secondary-text">10-12 PM</p>
+                        <p class="bold">0%</p>
                     </span>
                     <div class="progress-bar">
                         <div class="progress-status"></div>
@@ -259,21 +227,21 @@
             <section id="completion-rate" class="card">
                 <span class="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
-                    <h3 class="bold medium-text">Completion Rate</h3>
+                    <h3 class="bold medium-text">Task Completion Rate</h3>
                 </span>
                 <div class="rate-circle">
                         <div class="rate">
-                            <p class="bold">84%</p>
-                            <p class="secondary-text">This Week</p>
+                            <p class="bold" id="pct-rate"></p>
+                            <p class="secondary-text" id="current-view-txt"></p>
                         </div>
                 </div>
                 <div class="rate-stats">
                     <span>
-                        <p class="bold" style="color: var(--success-color);">234</p>
+                        <p class="bold" style="color: var(--success-color);" id="completed-tasks"></p>
                         <p class="secondary-text">Completed</p>
                     </span>
                     <span>
-                        <p class="bold" style="color: var(--pink-accent);">38</p>
+                        <p class="bold" style="color: var(--pink-accent);" id="pending"></p>
                         <p class="secondary-text">Pending</p>
                     </span>
                 </div>
@@ -285,17 +253,17 @@
                 </div>
                 <div class="emoji">
                     <span>🔥</span>
-                    <h2>21 Days</h2>
+                    <h2>0 Days</h2>
                     <p class="secondary-text">Current Streak</p>
                 </div>
                 <div class="streak-stats">
                     <div>
                         <p class="secondary-text">Longest Streak</p>
-                        <p class="bold">35 days</p>
+                        <p class="bold">0 days</p>
                     </div>
                     <div>
                         <p class="secondary-text">Study Days</p>
-                        <p class="bold">89/120</p>
+                        <p class="bold">0/120</p>
                     </div>
                 </div>
             </section>
@@ -330,35 +298,12 @@
                     <i class="fa-solid fa-bullseye bull"></i>
                     <h3>Goal Progress</h3>
                 </span>
-                <div class="div">
-                    <div class="space">
-                        <p class="primary-text">Study 30 hours/week</p>
-                        <span>On Track</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
-                <div class="div">
-                    <div class="space">
-                        <p class="primary-text">Complete All Assignments</p>
-                        <span class="goals-active">Completed</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
-                </div>
-                <div class="div">
-                    <div class="space">
-                        <p class="primary-text">Practice Problems Daily</p>
-                        <span>Needs Focus</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-status"></div>
-                    </div>
+                <div class="goal-completion-progress">
+
                 </div>
             </div>        
         </div>
     </div>
+    <script type="module" src="JS/analytics.js"></script>
 </body>
 </html>

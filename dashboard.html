@@ -6,6 +6,7 @@
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>StudyFlow Dashboard</title>
 </head>
 <body class="main-dashboard">
@@ -54,7 +55,7 @@
             </div>
             <div class="study-streak active">
                 <p>Study Streak</p>
-                <p class="streak bold">7 Days 🔥</p>
+                <p class="streak bold"><span id="streak-days"></span> Days 🔥</p>
              </div>
     </div>
     <div class="main">
@@ -62,7 +63,7 @@
             <div class="top-side">
                 <div class="welcome-text">
                     <h2>Dashboard</h2>
-                    <p id="welcome-text">Welcome back, Lucy! Ready to study?</p>
+                    <p id="welcome-text">Welcome back, <span id="username"></span>! Ready to study?</p>
                 </div>
                 <div class="search-task hidden">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -71,7 +72,7 @@
                 <span class="notification-bell hidden"><i class="fa-regular fa-bell"></i></span>
             </div>
             
-            <span class="menu-bar" onclick="toggle()"><i class="fa-solid fa-bars"></i></span>
+            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
         </header>
         <section class="three-column-layout layout">
             <div class="overview-card card">
@@ -81,7 +82,7 @@
                     </span>
                     <p class="secondary-text">Goals Acheived</p>
                 </div>
-                <h3>15/20</h3>
+                <h3 id="goals-achieved"></h3>
             </div>
             <div class="overview-card card">
                 <div class="grid">
@@ -90,7 +91,7 @@
                     </span>
                     <p class="secondary-text">Study hours</p>
                 </div>                
-                <h3>23.5hrs</h3>
+                <h3 id="study-hrs"></h3>
             </div>
             <div class="overview-card card">
                 <div class="grid">
@@ -99,121 +100,24 @@
                     </span>
                     <p class="secondary-text">Tasks Done</p>
                 </div>
-                <h3>38/40</h3>
+                <h3><span id="task-completed"></span>/<span id="total-tasks"></span></h3>
             </div>
         </section>
         <section class="main-content">
             <section class="tasks-display">
-                <div class="heading">
-                    <h3>Today's Schedule</h3 >
-                    <button id="view-all-btn">View All</button>
+                <h3>Your Tasks</h3 >
+                <div class="tasks-content" id="tasks-container">
                     
-                </div>
-                <div class="tasks-content">
-                    <div class="task">
-                        <div class="left">    
-                            <div class="line primary-color"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line secondary-color"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div> 
-                            <div class="task-text">
-                                <p class="primary-text bold">Design Website</p>
-                                <p class="secondary-text">8.00AM - 9.00AM</p>
-                            </div>
-                        </div>
-                        <label class="custom-checkbox">
-                            <input type="checkbox" name="task-status" class="task-status">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
                 </div>
             </section>
             <section class="deadlines">
-                <div class="heading">
                     <h3>Upcoming Deadlines</h3>
-                    <span id="add-deadline"><i class="fa-solid fa-plus"></i></span>
-                </div>
-                <div class="tasks-content">
-                    <div class="task">
-                        <div class="left">
-                            <div class="line"></div>
-                            <div class="task-text">
-                                <p class="primary-text bold">Physics Lab Report</p>
-                                <p class="secondary-text">Jan 26</p>
-                            </div>
-                        </div>
-                        <span class="priority-text">High</span>
+                    <div class="tasks-content" id="deadlines-container">
+                        
                     </div>
-                    <div class="task">
-                        <div class="left">
-                        <div class="line"></div>
-                        <div class="task-text">
-                            <p class="primary-text bold">Physics Lab Report</p>
-                            <p class="secondary-text">Jan 26</p>
-                        </div>
-                        </div>
-                        <span class="priority-text">Medium</span>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                        <div class="line"></div>
-                        <div class="task-text">
-                            <p class="primary-text bold">Physics Lab Report</p>
-                            <p class="secondary-text">Jan 26</p>
-                        </div>
-                        </div>
-                        <span class="priority-text">Low</span>
-                    </div>
-                    <div class="task">
-                        <div class="left">
-                        <div class="line primary-color"></div>
-                        <div class="task-text">
-                            <p class="primary-text bold">Physics Lab Report</p>
-                            <p class="secondary-text">Jan 26</p>
-                        </div>
-                        </div>
-                        <span class="priority-text">Low</span>
-                    </div>
-                </div>
             </section>
         </section>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="JS/dashboard.js"></script>
 </body>
 </html>

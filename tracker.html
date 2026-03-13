@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StudyFlow</title>
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="main-dashboard">
     <div class="left-side linear-gradient visible">
@@ -21,7 +22,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
                         <a href="dashboard.html">Dashboard</a></li>
 
-                    <li class="active">
+                    <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg> 
                         <a href="tasks.html">Tasks</a>
                     </li>
@@ -36,7 +37,7 @@
                         <a href="goals.html">Goals</a>
                     </li>
 
-                    <li>
+                    <li class="active">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
                         <a href="tracker.html">Time Tracker</a>
                     </li>
@@ -54,7 +55,7 @@
             </div>
             <div class="study-streak active">
                 <p>Study Streak</p>
-                <p class="streak bold">7 Days 🔥</p>
+                <p class="streak bold"><span id="streak-days"></span> Days 🔥</p>
              </div>
     </div>
     
@@ -69,22 +70,28 @@
         <div class="tracker-container">
             <section class="timer-section">
                 <div class="pomodoro-timer">
-                    <div id="timer-msg">
+                    <div id="timer-msg">Please select a timer mode and a subject before starting</div>
+                    <div>
                         <span id="session-indicator"></span>
-                        <p class="bold">Ready to Study</p>
+                        <p class="bold" id="session-txt">Ready to Study</p>
                     </div>
                     <div class="timer-container">
                         <div class="timer">
                             <div class="main-pomodoro">
-                                <div class="pomodoro">
-                                    <div class="time-display" id="pomodoro-timer" data-duration="25:00">
-                                        <h1 class="time">25:00</h1>
-                                    </div>
-                                    <div class="time-display" id="short-timer" data-duration="5:00">
-                                        <h1 class="time">5:00</h1>
-                                    </div>
-                                    <div class="time-display" id="long-timer" data-duration="15:00">
-                                        <h1 class="time">15:00</h1>
+                                <div class="pomodoro-width">
+                                    <div class="pomodoro">
+                                        <div class="time-display" id="pomodoro-timer" data-duration="25:00">
+                                            <h1 class="time">25:00</h1>
+                                            <p class="timer-txt secondary-text">Focus Time (25 min)</p>
+                                        </div>
+                                        <div class="time-display" id="short-timer" data-duration="5:00">
+                                            <h1 class="time">5:00</h1>
+                                            <p class="timer-txt secondary-text"></p>
+                                        </div>
+                                        <div class="time-display" id="long-timer" data-duration="15:00">
+                                            <h1 class="time">15:00</h1>
+                                            <p class="timer-txt secondary-text"></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,104 +129,47 @@
 
                     <div class="horizontal-line"></div>
                     <div class="subject-selection">
-                        <p class="bold">What are you studying?</p>
+                        <p class="bold">What are you studying/doing?</p>
                         <select name="subject-selection" id="subject-selection" class="options">
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="English">English</option>
-                            <option value="Science">Science</option>
-                            <option value="Computer Science">Computer Science</option>
+                            
                         </select>
                     </div>
                 </div>
                 <div class="todays-session">
                     <h3>Today's Study Sessions</h3>
-                    <div class="study-session">
-                        <div class="text">
-                            <div class="span-icon opaque-green">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                            </div>
-                            <div class="p-text">
-                                <p class="bold">Mathematics</p>
-                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
-                            </div>
-                        </div>
-                        <div class="focus">
-                            <p class="bold">45 min</p>
-                            <div class="small-flex small-text secondary-text">
-                                <div class="circle"></div> 85% focus</div>
-                        </div>
-                    </div>
-                    <div class="study-session">
-                        <div class="text">
-                            <div class="span-icon opaque-blue">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                            </div>
-                            <div class="p-text">
-                                <p class="bold">Mathematics</p>
-                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
-                            </div>
-                        </div>
-                        <div class="focus">
-                            <p class="bold">45 min</p>
-                            <div class="small-flex small-text secondary-text">
-                                <div class="circle"></div> 85% focus</div>
-                        </div>
-                    </div>
-                    <div class="study-session">
+                    <div class="study-sessions">
                         
-                        <div class="text">
-                            <div class="span-icon opaque-purple">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                            </div>
-                            <div class="p-text">
-                                <p class="bold">Mathematics</p>
-                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
-                            </div>
-                        </div>
-                        <div class="focus">
-                            <p class="bold">45 min</p>
-                            <div class="small-flex small-text secondary-text">
-                                <div class="circle"></div> 85% focus</div>
-                        </div>
-                    </div>
-                    <div class="study-session">
-                        
-                        <div class="text">
-                            <div class="span-icon opaque-pink">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-icon lucide-book-open"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                            </div>
-                            <div class="p-text">
-                                <p class="bold">Mathematics</p>
-                                <p class="secondary-text small-text">9.00 - 9.45 AM</p>
-                            </div>
-                        </div>
-                        <div class="focus">
-                            <p class="bold">45 min</p>
-                            <div class="small-flex small-text secondary-text">
-                                <div class="circle"></div> 85% focus</div>
-                        </div>
                     </div>
                     <div class="total-study-time" id="total-study-time">
                         <p class="bold">Total Study Time Today</p>
-                        <p class="study-time bold">2h 20min</p>
+                        <p class="study-time bold"></p>
                     </div>
                 </div>
             </section>
             <section class="stats-section">
                 <div class="stats">
                     <h3>Today's Stats</h3>
-                    <span><p class="secondary-text">Sessions</p> <p class="bold">4</p></span>
-                    <span><p class="secondary-text">Total Time</p> <p class="bold">2h 40min</p></span>
-                    <span><p class="secondary-text">Avg Focus</p> <p class="bold">90%</p></span>
-                    <span><p class="secondary-text">Breaks Taken</p> <p class="bold">3</p></span>
+                    <span><p class="secondary-text">Sessions</p> <p class="bold" id="sessions">0</p></span>
+                    <span><p class="secondary-text">Total Time</p> <p class="bold" id="total-time">0</p></span>
+                    <span><p class="secondary-text">Avg Focus</p> <p class="bold" id="avg-focus">0</p></span>
                 </div>
                 <div class="goal-tracker linear-gradient">
                     <h3>Weekly Goal</h3>
-                    <span>18.5/21 hours <p>74%</p></span>
+                    <div class="hrs-details">
+                        <span><p id="done-hrs">0</p> / <p id="total-hrs-goal">0</p> Hours</span>
+                        <p id="percentage-done">0%</p>
+                    </div>
                     <div class="bar">
                         <div class="bar-status"></div>
                     </div>
-                    <p>Keep it up you need 6.5 more hours to reach your weekly goal.</p>
+                    <p>Keep it up you need <span id="more-hrs">0</span> more hours to reach your weekly goal.</p>
+                </div>
+                <div class="form">
+                    <div class="small-div">
+                        <label for="hrs-goal">Set your weekly Study Hours goal</label>
+                        <input type="number" name="hrs-goal" id="hrs-goal">
+                        <button id="set-weekly-goal-btn">Set Goal</button>
+                    </div>
                 </div>
                 <div class="pomodoro-setter">
                     <h3><i class="fa-regular fa-clock"></i> Pomodoro</h3>
@@ -228,12 +178,8 @@
                         <input type="number" name="focus-duration" id="focus-duration" value="25">
                     </div>
                     <div class="input-div">
-                        <label for="break-duration" class="secondary-text">Break Duration</label>
+                        <label for="break-duration" class="secondary-text">Long Break Duration</label>
                         <input type="number" name="break-duration" id="break-duration" value="5">
-                    </div>
-                    <div class="checkbox-div">                        
-                        <label for="auto-breaks" class="secondary-text">Auto-start breaks</label>
-                        <input type="checkbox" name="auto-breaks" id="auto-breaks">
                     </div>
                 </div>
                 <div class="tip-div">
@@ -249,6 +195,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="JS/tracker.js"></script>
 </body>
 </html>

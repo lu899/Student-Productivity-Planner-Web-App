@@ -6,7 +6,8 @@
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
-    <title>StudyFlow Calender</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>StudyFlow</title>
 </head>
 <body class="main-dashboard">
     <div class="left-side linear-gradient visible">
@@ -54,7 +55,7 @@
         </div>
         <div class="study-streak active">
             <p>Study Streak</p>
-            <p class="streak bold">7 Days 🔥</p>
+            <p class="streak bold"><span id="streak-days"></span> Days 🔥</p>
             </div>
     </div>
     
@@ -62,36 +63,51 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1>Add Goal</h1>
-                <span><i class="fa-solid fa-circle-xmark"></i></span>
+                <span id="close-modal-btn"><i class="fa-solid fa-circle-xmark"></i></span>
             </div>
             <form id="addTaskForm" class="form">
-                <label for="title">Goal Title* :</label>
-                <input type="text" id="title" placeholder="Enter task title" required>
+                <div>
+                    <label for="title">Goal Title* :</label>
+                    <input type="text" id="title" placeholder="Enter task title" required>
+                </div>
 
-                <label for="description">Description (optional) :</label>
-                <textarea name="description" id="description" rows="3"></textarea>
+                <div>
+                    <label for="description">Description (optional) :</label>
+                    <textarea name="description" id="description" rows="3"></textarea>
+                </div>
 
-                <label for="category">Category* :</label>
-                <select name="category" id="category">
-                    <option value="Academic">Academic</option>
-                    <option value="Habits">Habits</option>
-                    <option value="Skills">Skills</option>
-                    <option value="short-term">Short Term</option>
-                    <option value="long-term">Long Term</option>
-                    <option value="other">Other</option>
-                </select>
+                <div>
+                    <label for="goal-type">Goal Type* :</label>
+                    <select name="goal-type" id="goal-type">
+                        <option value="short-term">Short Term</option>
+                        <option value="long-term">Long Term</option>
+                    </select>
+                </div>
 
-                <label for="priority">Priority* :</label>
-                <select name="priority" id="priority">
-                    <option value="high">High Priority</option>
-                    <option value="medium">Medium Priority</option>
-                    <option value="low">Low Priority</option>
-                </select>
+                <div>
+                    <label for="category">Category* :</label>
+                    <select name="category" id="category">
+                        <option value="Academic">Academic</option>
+                        <option value="Habits">Habits</option>
+                        <option value="Skills">Skills</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="priority">Priority* :</label>
+                    <select name="priority" id="priority">
+                        <option value="high">High Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="low">Low Priority</option>
+                    </select>
+                </div>
                 
-                <label for="deadline">Deadline* :</label>
-                <input type="date" name="deadline" id="deadline" required>
+                <div>
+                    <label for="deadline">Deadline* :</label>
+                    <input type="date" name="deadline" id="deadline" required>
+                </div>
                 
-                <button type="submit" class="btn">Add Goal</button>
+                <button class="btn" id="save-goal-btn">Add Goal</button>
             </form>
         </div>
     </div>
@@ -108,14 +124,7 @@
                 </div>
             </div>
         </header>
-        <div class="view-btn-group">
-            <button class="primary-btn view-btn btn-active">All Goals</button>
-            <button class="primary-btn view-btn">Academic</button>
-            <button class="primary-btn view-btn">Skills</button>
-            <button class="primary-btn view-btn">Habits</button>
-            <button class="primary-btn view-btn">Short-term</button>
-            <button class="primary-btn view-btn">Long-term</button>
-        </div>
+        
         <div class="four-column-layout">
             <div class="overview-card card">
                 <span class="icon opaque-blue">
@@ -123,7 +132,7 @@
                 </span>
                 <div class="column-text">
                     <p>Active Goals</p>
-                    <h3>15</h3>
+                    <h3 id="no-active"></h3>
                 </div>
             </div>
 
@@ -133,7 +142,7 @@
                 </span>
                 <div class="column-text">
                     <p>Completed</p>
-                    <h3>45</h3>
+                    <h3 id="no-completed"></h3>
                 </div>
             </div>
             <div class="overview-card card">
@@ -142,7 +151,7 @@
                 </span>
                 <div class="column-text">
                     <p>On Track</p>
-                    <h3>8</h3>
+                    <h3 id="no-onTrack"></h3>
                 </div>
             </div>
 
@@ -152,7 +161,7 @@
                 </span>
                 <div class="column-text">
                     <p>Need Attention</p>
-                    <h3>2</h3>
+                    <h3 id="no-needAttention"></h3>
                 </div>
             </div>
         </div>
@@ -162,162 +171,33 @@
                     <div class="heading">
                         <i class="fa-regular fa-flag"></i>
                         <h3>Short Term Goals</h3>
-                        <span class="goals-active">5 active</span>
+                        <span style="background-color: var(--opaque-blue);
+    color: var(--primary-color);" class="goals-active"><span id="st-active-goals"></span> active</span>
                     </div>
-                    <div class="goal secondary-text">
-                        <div class="goal-heading">
-                            <div class="main-text">
-                                <h4>Complete Math Course <span class="priority">High</span></h4>
-                                <p>Finish all chapters and practice problems</p>
-                            </div>
-                            <i class="fa-solid fa-pen edit-goal"></i>
-                        </div>
-                        <div class="goal-info">
-                            <div class="info-icons">
-                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
-                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
-                                <span>Academic</span>
-                            </div>
-                            <i class="fa-solid fa-trash delete-goal"></i>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-text">
-                                <p>Progress</p>
-                                <p class="percentage">85%</p>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-status"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="goal secondary-text">
-                        <div class="goal-heading">
-                            <div class="main-text">
-                                <h4>Complete Math Course <span class="priority">High</span></h4>
-                                <p>Finish all chapters and practice problems</p>
-                            </div>
-                            <i class="fa-solid fa-pen edit-goal"></i>
-                        </div>
-                        <div class="goal-info">
-                            <div class="info-icons">
-                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
-                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
-                                <span>Academic</span>
-                            </div>
-                            <i class="fa-solid fa-trash delete-goal"></i>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-text">
-                                <p>Progress</p>
-                                <p class="percentage">85%</p>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-status"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="goal secondary-text">
-                        <div class="goal-heading">
-                            <div class="main-text">
-                                <h4>Complete Math Course <span class="priority">High</span></h4>
-                                <p>Finish all chapters and practice problems</p>
-                            </div>
-                            <i class="fa-solid fa-pen edit-goal"></i>
-                        </div>
-                        <div class="goal-info">
-                            <div class="info-icons">
-                                <span><i class="fa-solid fa-calendar"></i> Jan 31, 2026</span>
-                                <span><i class="fa-solid fa-square-check"></i> 15/20 topics</span>
-                                <span>Academic</span>
-                            </div>
-                            <i class="fa-solid fa-trash delete-goal"></i>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-text">
-                                <p>Progress</p>
-                                <p class="percentage">85%</p>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-status"></div>
-                            </div>
-                        </div>
+                    <div class="short-term-container">
+                        
                     </div>
                 </section>
                 <section id="long-term" class="goal-term-container">
                     <div class="heading">
                         <i class="fa-regular fa-star"></i>
                         <h3>Long Term Goals</h3>
-                        <span class="goals-active">3 active</span>
+                        <span class="goals-active" style="background-color: var(--opaque-green);
+    color: var(--success-color);"><span id="lt-active-goals"></span> active</span>
                     </div>
-                    <div class="long-term-goal secondary-text">
-                        <div class="long-term-goal-header">
-                            <div>
-                                <h4>Graduate with Honours</h4>
-                                <p>Maintain GPA above 3.8</p>
-                            </div>
-                            <p class="percentage big-text">45%</p>
-                        </div>
-                        <div class="info-icons">
-                            <span><i class="fa-solid fa-calendar"></i> May 2027</span>
-                            <span><i class="fa-solid fa-bullseye"></i> 3/7 semesters</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-status"></div>
-                        </div>
-                    </div>
-                    <div class="long-term-goal secondary-text">
-                        <div class="long-term-goal-header">
-                            <div>
-                                <h4>Graduate with Honours</h4>
-                                <p>Maintain GPA above 3.8</p>
-                            </div>
-                            <p class="percentage big-text">45%</p>
-                        </div>
-                        <div class="info-icons">
-                            <span><i class="fa-solid fa-calendar"></i> May 2027</span>
-                            <span><i class="fa-solid fa-bullseye"></i> 3/7 semesters</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-status"></div>
-                        </div>
+                    <div class="long-term-container">
+                        
                     </div>
                 </section>
             </div>
-            <aside class="right-side">
+            <div class="right-side">
                 <div class="weeks-focus">
-                    <h3>This Week's Focus</h3>
-                    <ul class="weeks-focus-list">
-                        <li>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" name="task-status" class="task-status">
-                                <span class="checkmark"></span>
-                            </label>
-                            Complete 5 study sessions
-                        </li>
-                        <li>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" name="task-status" class="task-status">
-                                <span class="checkmark"></span>
-                            </label>
-                            Complete 5 study sessions
-                        </li>
-                        <li>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" name="task-status" class="task-status">
-                                <span class="checkmark"></span>
-                            </label>
-                            Complete 5 study sessions
-                        </li>
-                        <li>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" name="task-status" class="task-status">
-                                <span class="checkmark"></span>
-                            </label>
-                            Complete 5 study sessions
-                        </li>
-                    </ul>
+                    <h3>Completed Goals</h3>
+                    <div class="weeks-focus-list">
+                        
+                    </div>
                 </div>
-                <div class="recent-achievement">
+                <!-- <div class="recent-achievement">
                     <div class="medal">
                         <i class="fa-solid fa-medal"></i>
                         <p>Recent Achievement</p>
@@ -325,15 +205,16 @@
                     <span>🏆</span>
                     <h6>Study Streak Master!</h6>
                     <p>Maintained 21-day streak</p>
-                </div>
+                </div> -->
                 <div class="quote">
                     <blockquote>
                         Setting goals is the first step of turning the invisible to visible
                     </blockquote>
                     <p class="citer">— Tony Robbins</p>
                 </div>
-            </aside>
+            </div>
         </div>
     </div>
+    <script type="module" src="JS/goals.js"></script>
 </body>
 </html>

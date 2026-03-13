@@ -6,6 +6,7 @@
     <link rel="icon" href="Images/bookOpenIcon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/13dbe94116.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>Sign Up</title>
 </head>
 <body>
@@ -15,13 +16,7 @@
                 <img src="Images/bookOpenIcon.png" alt="Book Open Icon"> 
                 <span>StudyFlow</span>
             </div>
-
-            <ul class="nav-bar hidden">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Testimonials</a></li>
-            </ul>
-            <span class="menu-bar"><i class="fa-solid fa-bars"></i></span>
+            <a href="index.html">Home</a>
         </nav>
     </header>
     <main>
@@ -48,6 +43,7 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" placeholder="Enter your password">
                     <span class="show-password"><i class="fa-regular fa-eye"></i></span>
+                    <p id="pass-strength"></p>
                 </div>
 
                 <div class="details-div">
@@ -57,13 +53,9 @@
                 </div>
             </div>
             <button id="sign-up" class="btn">Sign Up</button>
-            <p class="secondary-text">or sign up with</p>
-            <div class="icons">
-                <i class="fa-brands fa-google"></i>
-                <i class="fa-brands fa-apple"></i>
-            </div>
             <p class="sign-in">Already have an account? <a href="login.html" class="blue-text">Sign in</a></p>
         </section>
     </main>
+    <script type="module" src="login_register.js"></script>
 </body>
 </html>
