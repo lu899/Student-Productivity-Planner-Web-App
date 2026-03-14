@@ -262,12 +262,6 @@ For issues or feature requests, please contact the development team.
 
 ---
 
-## 📄 License
-
-[Add your license information here - e.g., MIT, Apache 2.0]
-
----
-
 ## 👨‍💻 Contributing
 
 Contributions are welcome! Please follow these steps:
